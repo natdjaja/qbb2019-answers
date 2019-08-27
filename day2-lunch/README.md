@@ -9,7 +9,7 @@
  
  
  (for exercise b)
- 
+ gi
  fastqc SRR072893.10k.fastq 
  
  
@@ -36,7 +36,43 @@
  
  (for exercise 3)
  
- sort SRR072893.sam | cut -f 1 | uniq -c > SRR072893.txt
+ grep "^SRR072893" SRR072893.sam | cut -f 3 | sort | uniq -c > SRR072893.txt
+ 
+ cut -f 3 SRR072893.sam | sort | uniq -c
+ 
+  1 211000022278750
+    2 211000022278876
+    1 211000022278877
+    1 211000022278878
+    5 211000022278879
+    1 211000022278881
+    2 211000022279055
+    1 211000022279100
+    2 211000022279109
+    1 211000022279132
+    2 211000022279222
+    3 211000022279343
+    1 211000022279420
+    1 211000022279446
+    1 211000022279540
+    3 211000022279676
+    1 211000022279708
+    1 211000022279810
+    2 211000022280043
+    2 211000022280304
+    1 211000022280508
+    1 211000022280645
+ 5724 2L
+ 6821 2R
+ 6117 3L
+ 7990 3R
+  444 4
+    1 Unmapped_Scaffold_58
+ 5848 X
+   32 Y
+   73 dmel_mitochondrion_genome
+   35 rDNA
+
  
  (we want to sort our sam file which is readable and is the product of converting the hisat2 files which has a header and an aligment section. we don't use the bam file since this is a compressed binary file and can't be read)
  
@@ -50,7 +86,7 @@
  samtools view SRR072893.sam | awk '{print NF}' | sort SRR072893.sam | uniq -c > SRR072893.columns
  
  
- 
+
  
  
  
