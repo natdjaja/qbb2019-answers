@@ -32,13 +32,17 @@ goi2 = np.log2(df.loc[:,name2] + 1)
 
 
 fig, ax = plt.subplots()
-ax.scatter (goi, goi2, alpha=0.3)
+ax.scatter (goi, goi2, alpha=0.2, color="red")
 ax.set_title("Scatterplot")
 ax.set_xlabel("Log2 FPKM {}".format(name1))
 ax.set_ylabel("Log2 FPKM {}".format(name2))
 
-fig.savefig("name1vsname2.png")
+polyfit = np.polyfit(goi, goi2, 1)
+poly1d = np.poly1d(polyfit)
+xp = np.linspace(0, 14, 100)
+ax.plot(xp, poly1d(xp))
 
+fig.savefig("name1vsname2.png")
 
 plt.close(fig)
 
