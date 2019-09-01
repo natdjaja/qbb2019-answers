@@ -3,18 +3,25 @@
 """
 Count all kmer in a FASTA file
 """
+# ./day3-hw2.py droYak2_seq.fa subset.fa 11 > extended.out
 
 from fasta import FASTAReader
 import sys
 
 reader1 = FASTAReader(open(sys.argv[1])) #target subset
-reader2 = FASTAReader(open(sys.argv[2])) #query which we have
+reader2 = FASTAReader(open(sys.argv[2])) #query which is droyak
 k = int(sys.argv[3])
 
 kmer_positions = dict()
+#key is kmer
+#value is ident,i (sequence,start of target)
 targetsequence = {}
+#key is ident (sequence)
+#value is targetseq
 extension = {}
-#for target name, store extension that goes with it
+#key targetseq
+#value is the extension
+
 
 for ident, sequence in reader1:
     sequence = sequence.upper()
@@ -33,28 +40,31 @@ for ident, sequence in reader2:
     for j in range(0, len(sequence)-k+1):
         kmer=sequence[j:j+k]
         if kmer in kmer_positions:
-            key = kmer_positions[kmer]
-            for ident,i in key:
-                targetseq = targetsequence[ident]
-                lengthtarget = len(targetseq)
-                lengthquery = len(sequence)
-                extendright = True
-                extendedkmer = kmer 
+            for ident,i in kmer_positions[kmer]:
+                
+                targetseq = targetsequence[ident] #ident is key, value is targetseq
+                lengthtarget = len(targetseq) #print out targetseq length
+                lengthquery = len(sequence) #print out sequence from reader2 query
+                extendright = True #so it goes right
+                extendedkmer = kmer #new variable for kmer
+                j = 0
                 while True:
                     if extendright:
-                        if targetseq[i+k+1] == targetseq[j+k+1]:
+                        if sequence[j+k+1] == targetseq[+k+1]:
                             i += 1
                             j += 1
                             extendedkmer += targetseq[j+k+1]
                         else:
                             extendright = False
-                    else:
-                        extension[targetseq] = []
-                        break
+                            extension[extendedkmer] = (targetseq)
+                            break
                     if lengthtarget == i+k or lengthquery == j+k:
                         extendright = False
-                                                                            
-                print(ident, i, j, kmer) 
+                        break  
+sorted(extendedkmer, reverse = True, key = len)
+for extendedkmer in extension:
+        print(extendedkmer)
+                        
         
 
 
