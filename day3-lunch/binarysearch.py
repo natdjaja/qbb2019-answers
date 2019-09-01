@@ -1,24 +1,23 @@
 #!/usr/bin/env python3
 
-#!/usr/bin/env python3
-
 import sys
 
+
+protein_coding_genes = {}
 genes = []
-dictionary = {}
 
 for i, line in enumerate (open(sys.argv[1])):
     fields = line.split()
     if line.startswith("#"):
         continue 
-    if 'gene_biotype "protein_coding"' in line and "3R" in fields[0]:
+    if 'gene_biotype "protein_coding"' in line and "3R" in fields[0] and "gene" in fields[2]:
         start = int(fields[3])
         end = int(fields[4])
-        gene_name = (fields[13])    
-        genes.append((start,end,gene_name))
-        actual_gene_name = fields[13]
-        dictionary[fields[3]] = actual_gene_name
-        dictionary[fields[4]] = actual_gene_name
+        gene_name = fields[13]    
+        
+        protein_coding_genes[(start,end)] = gene_name
+        genes.append((start,end))
+        
 # binary
 
 search_pos = 21378950
@@ -38,17 +37,21 @@ while lo < hi:
     elif search_pos > genes[mid][1]:
         genes = genes[(mid+1):]
     else:
+        print (genes[mid][2] , number_iterations)
         break
         
     hi=len(genes)-1
+gene_name = protein_coding_genes[genes[0]]
+print(gene_name)
        
 location = list(genes[0])
 distance_1 = abs(location[0]-search_pos)
 distance_2 = abs(location[1]-search_pos)
 
 if distance_1 > distance_2:
-    print("Gene name is ", genes[mid][2], "Distance is ", distance_2, "Number of iterations is ", number_iterations)
+    print(distance_2)
+    
 else:
-    print("Gene name is ", genes[mid][2], "Distance is ", distance_1, "Number of iterations is ", number_iterations)
-
+    print(distance_1)
+print(number_iterations)
 
