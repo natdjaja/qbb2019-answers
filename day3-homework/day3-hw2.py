@@ -1,5 +1,3 @@
-#!/bin/usr/env phyton3
-
 #!/usr/bin/env python3
 
 """
@@ -9,8 +7,8 @@ Count all kmer in a FASTA file
 from fasta import FASTAReader
 import sys
 
-reader1 = FASTAReader(open(sys.argv[1]))
-reader2 = FASTAReader(open(sys.argv[2]))
+reader1 = FASTAReader(open(sys.argv[1])) #target subset
+reader2 = FASTAReader(open(sys.argv[2])) #query which we have
 k = int(sys.argv[3])
 
 kmer_positions = dict()
@@ -44,19 +42,18 @@ for ident, sequence in reader2:
                 extendedkmer = kmer 
                 while True:
                     if extendright:
-                        if targetseq[i+k+1] == sequence[j+k+1]:
+                        if targetseq[i+k+1] == targetseq[j+k+1]:
                             i += 1
                             j += 1
-                            extendedkmer += sequence[j+k+1]
+                            extendedkmer += targetseq[j+k+1]
                         else:
-                        extendright = False
+                            extendright = False
                     else:
-                       # we would add extensions here 
+                        extension[targetseq] = []
                         break
                     if lengthtarget == i+k or lengthquery == j+k:
                         extendright = False
-                                                            
-                                
+                                                                            
                 print(ident, i, j, kmer) 
         
 
