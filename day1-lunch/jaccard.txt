@@ -1,0 +1,8 @@
+bedtools jaccard -a K4me3.sorted.bed -b K9me3.sorted.bed
+K4 vs K9
+intersection	union-intersection	jaccard	n_intersections
+342795	26879767	0.0127529	189
+
+bedtools jaccard -a K4me3.sorted.bed -b K27me3.sorted.bed
+intersection	union-intersection	jaccard	n_intersections
+390845	27128477	0.0144072	161
