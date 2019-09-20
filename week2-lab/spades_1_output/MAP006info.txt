@@ -1,0 +1,5 @@
+The number of contigs is 806
+the minimum number is 692
+the maximum number is 17631
+the average is 7486.802729528536
+the N50 is 8608
