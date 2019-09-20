@@ -1,0 +1,5 @@
+The number of contigs is 1
+the minimum number is 100000
+the maximum number is 100000
+the average is 100000.0
+the N50 is 100000
