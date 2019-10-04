@@ -24,3 +24,6 @@ Add in this info to the top of this file:
 mate finalquery.out
  
 transeq -sequence finalquery.out -outseq sequence.out
+
+
+./nucseq.py align.out finalquery.out
