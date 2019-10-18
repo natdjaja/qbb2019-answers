@@ -1,0 +1,27 @@
+wget http://hgdownload.soe.ucsc.edu/goldenPath/sacCer3/bigZips/chromFa.tar.gz
+
+tar -xvzf chromFa.tar.gz
+
+cat *.fa > ref.fa
+
+bwa index ref.fa
+
+tar -xvzf BYxRM_subset.tar.xv
+
+bwa mem -R "@RG\tID:A01_09\tSM:A01_09 " ref.fa A01_09.fastq > A01_09.sam
+
+do for all files
+
+samtools sort A01_09.sam > A01_09.bam
+
+samtools index A01_09.bam
+
+freebayes -f ref.fa -p 1 *.bam | vcffilter -f "QUAL > 20" | vcfallelicprimitives -kg > variants.vcf
+
+snpEff download R64-1-1.86
+
+snpEff R64-1-1.86 variants.vcf > newvariants.vcf 
+
+graph.py script
+
+run ./graph.py output.ann.vcf
