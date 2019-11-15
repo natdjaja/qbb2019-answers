@@ -18,11 +18,11 @@ sc.pp.log1p(adata)
 sc.pp.scale(adata)
 
 sc.pp.neighbors(adata)
-sc.tl.louvain(adata)
-sc.tl.tsne(adata)
+sc.tl.louvain(adata, resolution = 0.3)
+sc.tl.tsne(adata )
 
 sc.pl.tsne(adata, 
 color = ['louvain'],
-palette=sns.color_palette("hls", 15),
+palette=sns.color_palette("hls", 10),
 legend_fontsize="20") 
     

@@ -20,6 +20,6 @@ sc.pp.log1p(adata)
 sc.pp.scale(adata)
 
 sc.pp.neighbors(adata)
-sc.tl.louvain(adata)    
+sc.tl.louvain(adata,  resolution = 0.3)    
 sc.tl.umap(adata)
-sc.pl.umap(adata, color=['louvain'],  palette=sns.color_palette("hls", 23), legend_loc='on data')
+sc.pl.umap(adata, color=['louvain'],  palette=sns.color_palette("hls", 10), legend_loc='on data')
