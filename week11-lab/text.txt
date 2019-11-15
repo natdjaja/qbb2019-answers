@@ -31,6 +31,33 @@ mate logreg.py
 
 ./logreg.py neuron_10k_v3_filtered_feature_bc_matrix.h5
 
+
+T-test
+1. Igfbpl1- Granule neuroblasts, dentate gyrus -Telencephalon
+2. Dbi Mus musculus diazepam binding inhibitor (Dbi)
+3. Stmn2 Excitatory neurons, cerebral cortex
+4. Nrxn3 Excitatory neurons, cerebral cortex
+5. mt-Atp6 Cholinergic enteric neurons
+6. Islr2 Mus musculus immunoglobulin superfamily containing leucine-rich repeat 2 (Islr2)
+7. Nrxn3 Excitatory neurons, cerebral cortex
+8. Hbb-bbs Excitatory neurons, hindbrain
+9. Sparc Cholinergic enteric neurons
+10. Reln Mus musculus reelin (Reln)
+11. Rgs5 Mus musculus regulator of G-protein signaling 5 (Rgs5)
+
+Log-test
+1. Malat1 us musculus metastasis associated lung adenocarcinoma transcript 1 (non-coding RNA) (Malat1), long non-coding RNA Excitatory neurons, cerebral cortex
+2. Ccna2 Mus musculus cyclin A2 (Ccna2) Neuronal intermidate progenitor cells
+3. mt-Atp6 Cholinergic enteric neurons
+4.lhx6 Mus musculus LIM homeobox protein 6 (Lhx6)
+5. mt-Cytb Afferent nuclei of cranial nerves VI-XII
+6. Zbtb20 Mus musculus zinc finger and BTB domain containing 20 (Zbtb20)
+7. Npas1 Mus musculus neuronal PAS domain protein 1 (Npas1)
+8.Ftl1 Mus musculus ferritin light polypeptide 1 (Ftl1) 
+9. Trem2 Mus musculus triggering receptor expressed on myeloid cells 2 (Trem2)
+10. Reln Mus musculus reelin (Reln)
+11.Col3a1 Mus musculus collagen, type III, alpha 1 (Col3a1)
+
 1. Igfbpl1- Granule neuroblasts, dentate gyrus -Telencephalon
 2. Mdk DGNBL1    Granule neuroblasts, dentate gyrus    Telencephalon
 3. Stmn2 Excitatory neurons, cerebral cortex
@@ -42,31 +69,4 @@ mate logreg.py
 9. Sparc Cholinergic enteric neurons
 10. Reln Mus musculus reelin (Reln)
 11.Col3a1 Mus musculus collagen, type III, alpha 1 (Col3a1)
-
-Log test
-1. louvain
-2. Igfbl1
-3. Dbi
-4. Stmn2
-5. Nrxn3
-6. mt-Atp6
-7. Islr2
-8. Nrxn3
-9. Sparc
-10. Reln
-11. Rgs5
-
-T-test
-1. louvain 
-2. Malat1
-3. Ccna2
-4. mt-Atp6
-5. Lhx6
-6. Cytb
-7. Zbtb20
-8. Npas1
-9. Ftl1
-10. Trem2
-11. Reln
-12. Col3a1
 
