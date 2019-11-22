@@ -1,0 +1,39 @@
+Look up SRA111995 in https://www.ncbi.nlm.nih.gov/sra/?term=SRA111995
+
+conda install bismark
+conda install sra-tools
+conda install igv
+
+fastq-dump -X 1000000 --split-files SRR1035452
+fastq-dump -X 1000000 --split-files SRR1035454
+
+less -S SRR1035454_1.fastq 
+less -S SRR1035454_2.fastq 
+less -S SRR1035452_1.fastq 
+less -S SRR1035452_2.fastq
+
+fastqc SRR1035452_1.fastq
+fastqc SRR1035452_2.fastq
+fastqc SRR1035454_1.fastq
+fastqc SRR1035454_2.fastq
+
+cp /Users/cmdb/Downloads/chr19fa.fa .
+
+bismark --genome ./ -1 SRR1035452_1.fastq -2 SRR1035452_2.fastq
+bismark --genome ./ -1 SRR1035454_1.fastq -2 SRR1035454_2.fastq
+
+bismark_methylation_extractor --gzip --bedGraph SRR1035452_1_bismark_bt2_pe.bam
+bismark_methylation_extractor --gzip --bedGraph SRR1035454_1_bismark_bt2_pe.bam
+
+igv SRR1035452_1_bismark_bt2_pe.bedGraph.gz
+igv SRR1035454_1_bismark_bt2_pe.bedGraph.gz
+
+mate script.py
+
+ gunzip SRR1035452_1_bismark_bt2_pe.bedGraph.gz > sorted_SRR1035452_1_bismark_bt2_pe.bedGraph.gz
+ 
+  gunzip SRR1035454_1_bismark_bt2_pe.bedGraph.gz > sorted_SRR1035454_1_bismark_bt2_pe.bedGraph.gz
+  
+  ./script.py SRR1035452_1_bismark_bt2_pe.bedGraph SRR1035454_1_bismark_bt2_pe.bedGraph > results1
+  
+  ./script.py SRR1035452_1_bismark_bt2_pe.bedGraph SRR1035454_1_bismark_bt2_pe.bedGraph > results2
