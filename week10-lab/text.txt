@@ -1,0 +1,12 @@
+wget "https://www.dropbox.com/s/7hxh7f61756vc4k/hema_data.txt"
+
+mate sorthema.py
+
+./sorthema.py hema_data.txt hema_data.txt
+
+mate script.py
+
+./script.py hema_data.txt > genes.txt
+
+
+
