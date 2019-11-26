@@ -1,0 +1,21 @@
+conda create -n macs2 macs2
+conda activate macs2
+tar xvzf g1e.tar.xz
+gunzip chr19.fa.gz
+bowtie2-build -f chr19.fa chromosome19
+bowtie2 -x chromosome19 -U CTCF_G1E.fastq -S CTCF_G1E.sam
+bowtie2 -x chromosome19 -U CTCF_ER4.fastq -S CTCF_ER4.sam
+bowtie2 -x chromosome19 -U input_G1E.fastq -S input_G1E.sam
+bowtie2 -x chromosome19 -U input_ER4.fastq -S input_ER4.sam
+samtools sort CTCF_ER4.sam > CTCF_ER4.bam 
+samtools sort CTCF_G1E.sam > CTCF_G1E.bam 
+samtools sort input_G1E.sam > input_G1E.bam 
+samtools sort input_ER4.sam > input_ER4.bam 
+macs2 callpeak -t CTCF_ER4.bam -c input_ER4.bam -n ER4_macs2 -f BAM
+macs2 callpeak -t CTCF_G1E.bam -c input_G1E.bam -n G1E_macs2 -f BAM
+cut -f 1,2,3,4,5,6 ER4_macs2_peaks.narrowPeak > newER4
+cut -f 1,2,3,4,5,6 G1E_macs2_peaks.narrowPeak > newG1E
+bedtools intersect -v -a newER4 -b newG1E > ER4G1E
+bedtools intersect -v -a newG1E -b newER4 > G1EER4
+mate graphs.py
+./graphs.py ER4_macs2_summits.bed G1E_macs2_summits.bed newER4 G1EER4
