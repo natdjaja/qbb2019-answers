@@ -1,0 +1,24 @@
+# 1-order Markov frequencies from file Motif/sorted_seq_ER4.narrowpeak
+# seqs: 100    min: 497    max: 1397    avg: 621.4    sum: 62138    alph: DNA
+# order 0
+A 2.538e-01
+C 2.462e-01
+G 2.462e-01
+T 2.538e-01
+# order 1
+AA 7.010e-02
+AC 5.396e-02
+AG 8.113e-02
+AT 4.865e-02
+CA 7.619e-02
+CC 7.099e-02
+CG 1.786e-02
+CT 8.113e-02
+GA 6.174e-02
+GC 5.953e-02
+GG 7.099e-02
+GT 5.396e-02
+TA 4.576e-02
+TC 6.174e-02
+TG 7.619e-02
+TT 7.010e-02

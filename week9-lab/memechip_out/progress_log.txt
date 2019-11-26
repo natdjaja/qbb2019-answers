@@ -1,0 +1,34 @@
+Invoking:
+  getsize memechip_out/sortedER4_peaks.narrowPeak 1> $metrics
+Finished invoke:
+  name: count_seqs  status: 0  time: 0.011747
+Invoking:
+  fasta-most -min 50 < memechip_out/sortedER4_peaks.narrowPeak 1> $metrics
+Finished invoke:
+  name: most_seqs  status: 0  time: 0.065602
+Invoking:
+  fasta-center -dna -len 100 < memechip_out/sortedER4_peaks.narrowPeak 1> memechip_out/seqs-centered
+Finished invoke:
+  name: center_seqs  status: 0  time: 0.078167
+Invoking:
+  fasta-shuffle-letters memechip_out/seqs-centered memechip_out/seqs-shuffled -kmer 2 -tag -dinuc -dna -seed 1
+Finished invoke:
+  name: shuffle_seqs  status: 0  time: 0.008609
+Invoking:
+  fasta-get-markov -nostatus -nosummary -dna -m 1 memechip_out/sortedER4_peaks.narrowPeak memechip_out/background
+Finished invoke:
+  name: bg  status: 0  time: 0.009511
+Invoking:
+  meme memechip_out/seqs-centered -oc memechip_out/meme_out -mod zoops -nmotifs 3 -minw 6 -maxw 30 -bfile memechip_out/background -dna -revcomp -nostatus
+Finished invoke:
+  name: meme  status: 256  time: 0.149263
+Invoking:
+  dreme -verbosity 1 -oc memechip_out/dreme_out -png -dna -p memechip_out/seqs-centered -n memechip_out/seqs-shuffled
+Finished invoke:
+  name: dreme  status: 256  time: 0.088097
+Writing output
+Invoking:
+  meme-chip_html_to_tsv memechip_out/meme-chip.html memechip_out/summary.tsv "meme-chip sortedER4_peaks.narrowPeak" 5.0.5 "Mon Mar 18 20\:12\:19 2019 -0700"
+Finished invoke:
+  name: summary  status: 0  time: 0.179936
+Done

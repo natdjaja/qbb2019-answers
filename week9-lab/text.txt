@@ -1,0 +1,18 @@
+wget "https://raw.githubusercontent.com/bxlab/qbb2019/master/data/ER4_peaks.narrowPeak"
+
+conda install meme
+
+cp /Users/cmdb/Downloads/meme-5.1.0.tar .
+
+tar -xvf meme-5.1.0.tar
+
+sort -rnk 5 ER4_peaks.narrowPeak | head -n 100 > sortedER4_peaks.narrowPeak
+
+cp /Users/cmdb/Downloads/chr19.fa .
+
+bedtools getfasta -fi chr19.fa -bed sortedER4_peaks.narrowPeak > sorted_seq_ER4.narrowpeak
+
+meme-chip -o Motif -dna -meme-brief 100 sorted_seq_ER4.narrowpeak
+
+(files are now in Motif)
+

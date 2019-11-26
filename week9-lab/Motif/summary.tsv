@@ -1,0 +1,6 @@
+MOTIF_INDEX	MOTIF_SOURCE	MOTIF_ID	ALT_ID	CONSENSUS	WIDTH	SITES	E-VALUE	E-VALUE_SOURCE	MOST_SIMILAR_MOTIF_SOURCE	MOST_SIMILAR_MOTIF	URL
+1	MEME	GGBMWABRGYGCCMCCTRGTGGYMR	MEME-1	GGBMWABRGYGCCMCCTRGTGGYMR	25	80	8.8e-205	MEME	 	 	 
+
+# MEME-ChIP (Motif Analysis of Large Nucleotide Datasets): Version 5.0.5 released on Mon Mar 18 20:12:19 2019 -0700
+# The format of this file is described at http://meme-suite.org/doc/meme-chip-output-format.html
+# meme-chip -oc Motif -dna -meme-brief 100 sorted_seq_ER4.narrowpeak

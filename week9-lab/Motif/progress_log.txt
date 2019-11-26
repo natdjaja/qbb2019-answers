@@ -1,0 +1,50 @@
+Invoking:
+  getsize Motif/sorted_seq_ER4.narrowpeak 1> $metrics
+Finished invoke:
+  name: count_seqs  status: 0  time: 0.012616
+Invoking:
+  fasta-most -min 50 < Motif/sorted_seq_ER4.narrowpeak 1> $metrics
+Finished invoke:
+  name: most_seqs  status: 0  time: 0.0671
+Invoking:
+  fasta-center -dna -len 100 < Motif/sorted_seq_ER4.narrowpeak 1> Motif/seqs-centered
+Finished invoke:
+  name: center_seqs  status: 0  time: 0.075201
+Invoking:
+  fasta-shuffle-letters Motif/seqs-centered Motif/seqs-shuffled -kmer 2 -tag -dinuc -dna -seed 1
+Finished invoke:
+  name: shuffle_seqs  status: 0  time: 0.009728
+Invoking:
+  fasta-get-markov -nostatus -nosummary -dna -m 1 Motif/sorted_seq_ER4.narrowpeak Motif/background
+Finished invoke:
+  name: bg  status: 0  time: 0.008471
+Invoking:
+  meme Motif/seqs-centered -oc Motif/meme_out -mod zoops -nmotifs 3 -minw 6 -maxw 30 -bfile Motif/background -dna -revcomp -brief 100 -nostatus
+Finished invoke:
+  name: meme  status: 0  time: 17.041085
+Invoking:
+  dreme -verbosity 1 -oc Motif/dreme_out -png -dna -p Motif/seqs-centered -n Motif/seqs-shuffled
+Finished invoke:
+  name: dreme  status: 256  time: 0.059225
+Invoking:
+  centrimo -seqlen 566 -verbosity 1 -oc Motif/centrimo_out -bfile Motif/background Motif/sorted_seq_ER4.narrowpeak Motif/meme_out/meme.xml
+Finished invoke:
+  name: centrimo  status: 0  time: 0.082375
+Invoking:
+  tomtom -verbosity 1 -text -thresh 0.1 Motif/combined.meme Motif/combined.meme 1> Motif/motif_alignment.txt
+Finished invoke:
+  name: align  status: 0  time: 0.0461
+Invoking:
+  spamo -verbosity 1 -oc Motif/spamo_out_1 -bgfile Motif/background -keepprimary -primary GGBMWABRGYGCCMCCTRGTGGYMR Motif/sorted_seq_ER4.narrowpeak Motif/meme_out/meme.xml Motif/meme_out/meme.xml
+Finished invoke:
+  name: spamo1  status: 0  time: 0.143688
+Invoking:
+  fimo --parse-genomic-coord --verbosity 1 --oc Motif/fimo_out_1 --bgfile Motif/background --motif GGBMWABRGYGCCMCCTRGTGGYMR Motif/meme_out/meme.xml Motif/sorted_seq_ER4.narrowpeak
+Finished invoke:
+  name: fimo1  status: 0  time: 0.107845
+Writing output
+Invoking:
+  meme-chip_html_to_tsv Motif/meme-chip.html Motif/summary.tsv "meme-chip -oc Motif -dna -meme-brief 100 sorted_seq_ER4.narrowpeak" 5.0.5 "Mon Mar 18 20\:12\:19 2019 -0700"
+Finished invoke:
+  name: summary  status: 0  time: 0.122206
+Done
