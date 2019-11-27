@@ -51,5 +51,5 @@ axes[1].legend()
 axes[1].set_xlabel("Features")
 axes[1].set_ylabel("Number of Sites")
 
-fig.savefig("graphofsites.png")
+fig.savefig("image.png")
 plt.close(fig)
