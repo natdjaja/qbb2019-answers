@@ -1,0 +1,79 @@
+Chromosome conformation
+Cis-regulatory modules interacting with target promoters
+Elements sitting on chromatin, and folding up of chromatin to form long range connections with DNA that is not nearby in a linear sequence
+You can use FISH to see how close DNA are in space as well
+But FISH is low throughput, it has limited resolution, and there are a limited number of unique channels
+How can we turn this into a sequencing problem then to resolve these issues?
+Chromatin conformation capture (3C) that allows you to look at things that are spatially close together, mediated by some sort of protein or complex
+You get hybrid fragments of DNA that are close together
+HiC similar but with biotin and you randomly fragment
+This is an approach to map the whole genome and to see which DNA fragments are close together
+A binary switch of things in the genome that are contacting each other or not
+Large scale organization into two compartments (active/inactive)
+Distance distribution consistent with "fractal globule"
+Rate of decay of signal suggest what kind of structure is being fomrmed inside the nucleus
+We can also assess topologically associated domains that are highly self-interacting and have boundaries that exist outside of that
+TADs help to define the regulatory landscape of the genome
+They are really conserved across cell types too
+CTCF defines the boundaries of TADs!
+It does it in a very specific and oriented way
+
+Single-cell HiC relies on different context for every specific region that you're looking for
+HiC immuno-precipitation
+Before you sequence your DNA, you add an antibody for a protein that you may have and see where it is enriched in your DNA sequence
+
+Non Hi-C approaches
+Genome architecture mapping (GAM)
+Split-pool reocnigition of interactions by tag extension
+TSA-seq (tyramid signal amplification sequencing)
+
+GAM: take a whole slice of a nucleus
+May things within that sequence will either be super close or far apart
+You then count how many times each pair of things occurred in a slice
+You do get some single cell information from this
+More so, you get clusters of things that are co-occurring
+
+Sprite thinks of things in the units of interaction hubs
+You digest your genome, crosslink with proteins, and then you dilute it and spread out as blocks of protein-digested chromatin across a 96-well plate that further allows you to use different oligo-labels to append to each DNA
+This creates your custom random barcodes
+
+TSA-seq gives you a protein of interest, labeled with a horseradish peroxidase (creating free radicals that diffuse out in space and create a bond bewteen biotin and chromatin)
+We want to know this to see how genes are correlated to regulatory elements
+
+This is all useful for genome assembly, structural variation (compare to cancer), assessing regulatory landscape
+Structural variation detection
+
+Two things influence how enhancers drive transcription: the strength of the enhancer, and the proximity of the enhancer to your gene
+How frequently is it interacting wtih your gene
+
+G1E cell line, bin into 5kb bins 
+We have activity level, the coding RNA, and the scale of the chromosome which it is on
+Can we use enhancer elements to predict gene expression?
+
+
+
+conda create -n hifive -c bioconda -c anaconda -c conda-forge hifive
+conda activate hifive
+
+https://drive.google.com/drive/folders/1KTErAhetvyXhG5Tp3-Q5BjNlDn-jdQXY
+download these four files
+
+hifive fends -B chr10_frags.bed chr10_fragsNAME
+hifive hic-data -M chr10_data.mat chr10_fragsNAME chr10_dataNAME
+
+python -c "import hifive; hic=hifive.HiC('project', 'w'); hic.load_data('chr10_dataNAME'); hic.filter_fends(10); hic.save()"
+
+hifive hic-normalize express -w cis -f 10 project
+
+hifive hic-heatmap -b 500000 -d raw -F npz -i heatmap.png project heatoutput.npz
+
+hifive hic-interval -c chr10 -s 5000000 -e 50000000 -b 50000 -d fend -M -i heatmap2.png project heatoutput
+
+
+./script.py chr10_rna_binned.bed > chr10_rna_binnedindex > table
+
+open table to make sure it works
+
+mate RValue.py and enter in RValue number
+
+
