@@ -1,0 +1,24 @@
+mate notes.txt
+mate terminalcommands.txt
+
+mate histogram1.py
+./histogram1.py
+
+mate histogram2.py
+./histogram2.py
+
+mate histogram3.py
+./histogram3.py
+
+mate histogramfix.py
+./histogramfix.py
+
+mate histogramfix2.py
+./histogramfix2.py
+
+mate histogramselection.py
+./histogramselection.py
+
+
+
+

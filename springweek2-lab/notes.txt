@@ -1,0 +1,9 @@
+Wright-Fisher Model
+
+Two alleles
+Fixed population size
+Non-overlapping generations
+
+Remember binomial distributions
+Remember how to make histograms
+Then see how long it takes to fix the alleles in a population
