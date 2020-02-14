@@ -1,0 +1,16 @@
+Notes
+
+size of matrix should be m+1 by n+1
+initialize matrix with numpy
+alignment is arbitrary because we decide what the gap penalty will be
+we set it to 300 in our script
+
+
+Terminal commands
+
+mkdir springweek3-lab
+mate matrixscriptdraft.py
+mate sequence1.txt
+mate sequence2.txt
+
+./matrixscriptdraft.py sequence1.txt sequence2.txt > outputfile
